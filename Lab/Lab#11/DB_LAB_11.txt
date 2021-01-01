@@ -1,0 +1,260 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    11            ===============================================================================
+
+1.1
+DELIMITER $$
+CREATE PROCEDURE countEven(IN number INT) 
+BEGIN
+	DECLARE num INT  ;
+    DECLARE sum INT(50) ;
+    SET num = 2 ;
+    SET sum = 0 ;
+    REPEAT
+    	IF mod(num,2)=0 THEN
+        	SET sum = sum + 1 ;
+        END IF;    
+        SET num = num+1 ;
+    UNTIL num>number
+    END REPEAT;
+    SELECT sum;
+END $$
+DELIMITER $$
+
+1.2
+DELIMITER $$
+CREATE PROCEDURE sumEven(IN number INT) 
+BEGIN
+	DECLARE num INT  ;
+    DECLARE sum INT(50) ;
+    SET num = 2 ;
+    SET sum = 0 ;
+    REPEAT
+    	IF mod(num,2)=0 THEN
+        	SET sum = sum + num ;
+        END IF;    
+        SET num = num+1 ;
+    UNTIL num>number
+    END REPEAT;
+    SELECT sum;
+END $$
+DELIMITER $$
+
+
+2.
+DELIMITER $$
+CREATE PROCEDURE checkEmployee(IN eid INT)
+BEGIN
+	DECLARE employeeid INT ;
+	SELECT employee_id INTO employeeid FROM employees WHERE employee_id=eid ;
+	IF employeeid IS NULL THEN
+    		SELECT "NOT EXIST" AS Status ;
+    	ELSE
+    		SELECT "EXIST" AS Status ;
+    	END IF;    
+END $$
+DELIMITER $$
+
+3.
+DELIMITER $$
+CREATE PROCEDURE countEmployees(IN did INT,OUT count INT) 
+BEGIN
+	SELECT SUM(CASE WHEN department_id>did THEN 1 ELSE 0 END) AS IDGreater,
+    SUM(CASE WHEN department_id<did THEN 1 ELSE 0 END) AS IDSmaller,
+    SUM(CASE WHEN department_id=did THEN 1 ELSE 0 END) AS IDEqual, COUNT(*) AS TOTAL
+    FROM employees ;
+    SELECT SUM(CASE WHEN department_id=did THEN 1 ELSE 0 END) INTO count FROM employees ;
+END $$
+DELIMITER $$
+
+4.
+DELIMITER $$
+CREATE PROCEDURE evenOdd(IN number INT) 
+BEGIN
+    IF mod(number,2)=0 THEN
+    	SELECT "EVEN" AS NUMBER ;
+    ELSE
+    	SELECT "ODD" AS NUMBER ;
+    END IF;    
+END $$
+DELIMITER $$
+
+5.1
+DELIMITER $$
+CREATE PROCEDURE loopt5()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = 1 ;
+    SET str = "" ;
+    Increase:LOOP
+        IF num > 5 THEN
+			LEAVE Increase;
+		END IF; 
+ 	
+        IF (num<=5) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num+1 ;
+    END LOOP Increase;
+    SELECT str AS output;
+END $$
+DELIMITER $$
+
+5.2
+DELIMITER $$
+CREATE PROCEDURE whilet5()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = 1 ;
+    SET str = "" ;
+    WHILE num<=5 DO
+        IF (num<=5) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num+1 ;
+    END WHILE;
+    SELECT str AS output;
+END $$
+DELIMITER $$
+
+5.3
+DELIMITER $$
+CREATE PROCEDURE repeatt5()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = 1 ;
+    SET str = "" ;
+    REPEAT
+        IF (num<=5) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num+1 ;
+    UNTIL num>5
+    END REPEAT;
+    SELECT str AS output;
+END $$
+DELIMITER $$
+
+6.1
+DELIMITER $$
+CREATE PROCEDURE loopt6()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = 5 ;
+    SET str = "" ;
+    Reverse:LOOP
+        IF num <= 0 THEN
+			LEAVE Reverse;
+		END IF; 
+ 	
+        IF (num>0) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num-1 ;
+    END LOOP Reverse;
+    SELECT str AS output;
+END $$
+DELIMITER $$
+
+6.2
+DELIMITER $$
+CREATE PROCEDURE whilet6()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = 5 ;
+    SET str = "" ;
+   	WHILE num>0 DO
+        IF (num>0) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num-1 ;
+    END WHILE; 
+    SELECT str AS output;
+END $$
+DELIMITER $$
+
+6.3
+DELIMITER $$
+CREATE PROCEDURE repeatt6()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = 5 ;
+    SET str = "" ;
+    REPEAT
+        IF (num>0) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num-1 ;
+    UNTIL num<=0
+    END REPEAT;
+    SELECT str AS output;
+END $$
+DELIMITER $$
+
+7.1
+DELIMITER $$
+CREATE PROCEDURE loopt7()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = -5 ;
+    SET str = "" ;
+    Reverse:LOOP
+    	IF num > 0 THEN
+			LEAVE Reverse;
+	END IF; 
+ 		
+        IF (num<=0) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num+1 ;
+    END LOOP Reverse;
+    SELECT str AS output;
+END $$
+DELIMITER $$
+7.2 
+
+DELIMITER $$
+CREATE PROCEDURE whilet7()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = -5 ;
+    SET str = "" ;
+    WHILE num<1 DO
+        IF (num<=0) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num+1 ;
+    END WHILE;
+    SELECT str AS output;
+END $$
+DELIMITER $$
+
+7.3 
+DELIMITER $$
+CREATE PROCEDURE repeatt7()
+BEGIN
+	DECLARE num INT  ;
+    DECLARE str VARCHAR(50) ;
+    SET num = -5 ;
+    SET str = "" ;
+   	REPEAT
+        IF (num<=0) THEN
+        	SET str = CONCAT(str,num,",");
+        END IF;
+        SET num = num+1 ;
+    UNTIL num>0
+    END REPEAT;
+    SELECT str AS output;
+END $$
+DELIMITER $$

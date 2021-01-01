@@ -1,0 +1,23 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    09            ===============================================================================
+
+1.1) MariaDB [lab9]> INSERT INTO projects(name,start_date,end_date) VALUES ("AI for marketing","2019-08-01","2019-12-31"),("ML for values","2019-05-15","2019-11-20"),("CS for IT","2020-01-01","2020-05-20"),("SQL for input","2020-06-13","2020-11-20");
+
+
+1.2) MariaDB [lab9]> INSERT INTO student(std_no,std_name,department,email,phone,project_id) VALUES("S100","Ali Mehmood","Administration","ali@iba-suk.edu.pk","0333-895311",3),("S101","Manisha Kataria","Computer Science","manisha@iba-suk.edu.pk","0345-1113334",2),("S102","Sagar Sanjay","Engineering","sagar@iba-suk.edu.pk","0300-2222445",2),("S103","Sara Sheikh","IT","sara@iba-suk.edu.pk","0300-1112123",3);
+
+2.1) MariaDB [lab9]> CREATE TABLE IF NOT EXISTS projects_copy LIKE projects;
+
+2.2) MariaDB [lab9]> DELETE FROM projects;
+
+3) MariaDB [lab9]> INSERT INTO projects SELECT * FROM projects_copy ;
+
+4) MariaDB [lab9]> UPDATE projects SET start_date="2023-02-01" WHERE name="CS for IT";
+
+5) MariaDB [lab9]> UPDATE projects SET cost=90000 WHERE cost IS NULL;
+
+6) MariaDB [lab9]> UPDATE student LEFT JOIN projects_copy USING(project_id) SET daysToComplete=(SELECT DATEDIFF(end_date,start_date));

@@ -1,0 +1,43 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    12            ===============================================================================
+
+1. CREATE OR REPLACE VIEW deptno10 AS 
+   SELECT * FROM employees WHERE department_id=10 ;
+
+2. SELECT * FROM deptno10 ;
+
+3. UPDATE deptno10 SET department_id=20 WHERE department_id=10 ;
+
+4. CREATE OR REPLACE VIEW prntemptbl AS
+   SELECT * FROM employees WHERE department_id=10
+   WITH CHECK OPTION ; 
+
+5. CREATE OR REPLACE VIEW deptno20 AS
+   SELECT CONCAT(emp.first_name," ",emp.last_name) AS name,
+   dept.department_name,emp.salary
+   FROM employees AS emp JOIN departments AS dept
+   USING(department_id) 
+   WHERE emp.department_id=20 ;
+
+6.1. CREATE TABLE emp55 
+     SELECT * FROM employees WHERE department_id=10
+6.2. CREATE OR REPLACE VIEW MY_VU AS 
+     SELECT * FROM emp55;
+6.3. SELECT * FROM MY_VU ;
+
+7.1. CREATE TABLE emp2 LIKE employees; 
+7.2. CREATE INDEX firstname ON emp2(first_name);
+
+8. CREATE INDEX deptname ON departments(department_name);   		 
+
+9. DROP INDEX firstname ON emp2 ;
+
+10.1. SHOW INDEXES FROM departments ;
+10.2. ALTER TABLE departments DROP PRIMARY KEY, DROP INDEX DEPT_MGR_FK , DROP INDEX DEPT_LOCATION_IX,DROP INDEX deptname;
+
+
+"DROP INDEX PRIMARY" statement is not working on this table. 

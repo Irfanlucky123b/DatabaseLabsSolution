@@ -1,0 +1,70 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    10            ===============================================================================
+
+1.DELIMITER $$
+CREATE PROCEDURE DISPLAY ()
+BEGIN
+	SELECT employee_id,
+	CONCAT(first_name,last_name) as Name,
+	salary FROM employees
+	WHERE department_id=10;
+END$$
+DELIMITER ;
+
+2.DELIMITER $$
+CREATE PROCEDURE DISPLAY2(
+	IN deptno INT , OUT deptname varchar(20) ,OUT tsalary DECIMAL(10,2) 
+)
+BEGIN
+	SELECT department_name,SUM(salary) INTO deptname,tsalary from employees AS emp JOIN departments AS dep
+	USING(department_id) WHERE emp.department_id=deptno;
+END$$
+DELIMITER ;
+
+3.DELIMITER $$
+CREATE PROCEDURE DISPLAY3(
+	IN deptno INT , OUT deptname varchar(20), OUT smallest DECIMAL(10,2),OUT largest DECIMAL(10,2)
+)
+BEGIN
+	SELECT department_name,MAX(salary),MIN(salary) INTO deptname,largest,smallest FROM employees AS emp NATURAL JOIN departments AS dep WHERE emp.department_id=deptno;
+	SELECT employee_id, CONCAT(first_name,last_name) , (salary+commission_pct) AS sal FROM employees WHERE department_id=50; 
+END$$
+DELIMETER;
+
+4.DELIMITER $$
+CREATE FUNCTION MANAGER()
+RETURNS DECIMAL(20,3)
+BEGIN
+	DECLARE tsalaryc varchar(20);
+	SELECT SUM(emp1.salary) INTO tsalaryc FROM employees AS emp1 RIGHT JOIN employees AS emp2 ON(emp2.employee_id=emp1.manager_id) ;
+	RETURN(tsalaryc) ;
+END $$
+DELIMITER ;
+
+5.DELIMITER $$
+CREATE FUNCTION MANAGER2(employeeid INT)
+RETURNS varchar(20)	
+BEGIN
+	DECLARE empname varchar(20);
+	SELECT CONCAT(emp2.first_name,emp2.last_name) INTO empname FROM employees AS emp1 JOIN employees as emp2 ON(emp2.employee_id=emp1.manager_id) WHERE emp1.employee_id=employeeid ;	
+	RETURN(empname);
+END $$
+DELIMITER ;
+
+5.1) SELECT CONCAT(first_name,last_name) , MANAGER2(employee_id) FROM employees ;
+
+6.DELIMITER $$
+CREATE FUNCTION MANAGER3(managername VARCHAR(20))
+RETURNS DECIMAL(20,2)
+BEGIN
+	DECLARE managerid INT ;
+	DECLARE avgsalary DECIMAL(20,2) ;
+	SELECT manager_id INTO managerid FROM employees WHERE CONCAT(first_name,last_name)=managername;
+	SELECT AVG(salary) INTO avgsalary FROM employees WHERE manager_id=managerid;
+	RETURN (avgsalary) ; 
+END $$
+DELIMITER ; 	

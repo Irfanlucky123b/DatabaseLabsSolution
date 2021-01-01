@@ -1,0 +1,37 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    01            ===============================================================================
+
+
+mysql -u root -p
+
+Enter Password:
+
+MariaDB [(none)]>source hr.sql
+
+01.MariaDB [hr]> SELECT first_name AS FirstName , last_name AS LastName FROM employees;  
+
+02.MariaDB [hr]> SELECT DISTINCT department_id FROM Employees ;
+
+03.MariaDB [hr]> SELECT * FROM employees ORDER BY first_name DESC ;
+
+04.MariaDB [hr]> SELECT employee_id,first_name,last_name,salary FROM employees ORDER BY salary ;
+
+05.MariaDB [hr]> SELECT SUM(salary) AS Payable_salaries FROM employees ;
+
+06.MariaDB [hr]> SELECT MAX(salary), MIN(salary) FROM employees ;
+
+07.MariaDB [hr]> SELECT AVG(salary) ,COUNT(employee_id) FROM employees ;
+
+08.MariaDB [hr]> SELECT DISTINCT COUNT(DISTINCT job_id) FROM employees;
+
+09.MariaDB [hr]> SELECT UPPER(first_name) FROM employees ;
+
+10.MariaDB [hr]> SELECT * From employees LIMIT 10;
+
+11.MariaDB [hr]> SELECT * From employees LIMIT 2,2;
+
+12.MariaDB [hr]> SELECT * From employees ORDER BY employee_id DESC LIMIT 1,1;

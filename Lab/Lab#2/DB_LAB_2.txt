@@ -1,0 +1,47 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    02            ===============================================================================
+
+
+1.MariaDB [hr]> SELECT employee_id, first_name, salary FROM employees WHERE salary < 3000;
+
+2.MariaDB [hr]> SELECT first_name, last_name FROM employees WHERE first_name LIKE 'A%';
+
+3.MariaDB [hr]> SELECT first_name, job_id, department_id FROM employees WHERE job_id = 'PU_CLERK' OR manager_id = 114;
+
+4.MariaDB [hr]> SELECT employee_id, first_name, salary FROM employees WHERE salary BETWEEN 1500 AND 3000;
+
+5.MariaDB [hr]> SELECT employee_id, first_name, salary FROM employees WHERE commission_pct = 0;
+
+6.MariaDB [hr]> SELECT first_name FROM employees WHERE first_name LIKE '%N';
+
+7.MariaDB [hr]> SELECT first_name, job_id, department_id FROM employees WHERE NOT job_id = 'PU_CLERK';
+
+8.MariaDB [hr]> SELECT employee_id, first_name, salary FROM employees WHERE NOT salary IN(3300, 3200, 2200);
+
+9.MariaDB [hr]> SELECT  first_name, last_name FROM employees WHERE first_name LIKE 'A%N';
+
+10.MariaDB [hr]> SELECT  first_name, last_name FROM employees WHERE first_name LIKE '%LA%';
+
+11.MariaDB [hr]> SELECT employee_id, first_name, salary FROM employees ORDER BY salary DESC;
+
+12.MariaDB [hr]> SELECT first_name FROM employees WHERE first_name LIKE '_a%';
+
+13.MariaDB [hr]> SELECT employee_id, first_name, salary FROM employees WHERE NOT salary BETWEEN 1500 AND 3000;
+
+14.MariaDB [hr]> SELECT first_name, last_name, department_id FROM employees WHERE department_id IN(30, 100) ORDER BY department_id;
+
+15.MariaDB [hr]> SELECT first_name, last_name, salary FROM employees WHERE NOT salary BETWEEN 10000 AND 15000 AND department_id IN(30,100);
+
+16.MariaDB [hr]> SELECT first_name, last_name, hire_date FROM employees WHERE hire_date LIKE '1987%';
+
+17.MariaDB [hr]> SELECT last_name FROM employees WHERE last_name LIKE '______';
+
+18.MariaDB [hr]> SELECT first_name, (salary*15)/100 AS PF FROM employees;
+
+19.MariaDB [hr]> SELECT first_name, salary, salary*commission_pct FROM employees;
+
+20.MariaDB [hr]> SELECT first_name, salary, (salary-500) AS DSalary FROM employees;

@@ -1,0 +1,43 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							SectiON    :    B
+======================================================	Lab        :    05            ===============================================================================
+
+1. MariaDB [hr]> SELECT first_name, last_name, dept.department_id, dept.department_name FROM employees JOIN departments AS dept USING(department_id) ;
+
+2. MariaDB [hr]> SELECT CONCAT(first_name," ", last_name) AS Name,job_id, dept.department_id, dept.department_name FROM employees INNER JOIN departments AS dept USING(department_id) INNER JOIN locations AS loc ON(loc.location_id=dept.locatiON_id) WHERE loc.city="london" ;
+
+3. MariaDB [hr]> SELECT first_name, last_name, dept.department_name,loc.city,loc.state_province FROM employees INNER JOIN departments AS dept USING(department_id) INNER JOIN locations loc USING(location_id);
+
+4. MariaDB [hr]> SELECT e1.employee_id ,e1.last_name,e2.manager_id,e2.last_name FROM employees AS e1 JOIN employees e2 ON(e1.employee_id=e2.manager_id);	
+
+5. MariaDB [hr]> SELECT e1.first_name, e1.last_name,e1.hire_date FROM employees e1 JOIN employees e2 ON(e2.last_name='jones' AND e2.hire_date < e1.hire_date) ;
+
+6. MariaDB [hr]> SELECT department_name,COUNT(*) FROM departments INNER JOIN employees USING(department_id) GROUP BY department_name ;
+
+7. MariaDB [hr]> SELECT dept.department_id , dept.department_name , emp.first_name FROM departments dept JOIN employees AS emp ON(emp.department_id=dept.department_id AND emp.manager_id=dept.manager_id);
+
+8. MariaDB [hr]> SELECT dept.department_name,emp.first_name AS Manager_first_name,emp.last_name AS Manager_Last_Name,loc.city FROM employees AS emp INNER JOIN departments dept ON(dept.department_id=emp.department_id AND dept.manager_id=emp.manager_id) INNER JOIN locations AS loc USING(location_id);
+
+9. MariaDB [hr]> SELECT hist.*,emp.salary FROM job_history AS hist CROSS JOIN employees AS emp ON emp.department_id=hist.department_id AND emp.salary > 10000;
+
+10. MariaDB [hr]> SELECT emp.first_name ,emp.last_name, emp.hire_date, emp.salary FROM employees AS emp JOIN departments AS e1 ON(e1.department_id=emp.department_id AND year(current_date())-year(emp.hire_date)>15);
+
+11. MariaDB [hr]> SELECT dept.department_name, Avg(emp.salary) ,count(*) AS num_employee FROM employees AS emp JOIN departments AS dept ON dept.department_id = emp.department_Id GROUP BY emp.department_Id ;
+
+12. MariaDB [hr]> SELECT con.country_name,loc.city,dept.department_name FROM countries AS con JOIN locations AS loc USING(country_id) JOIN departments AS dept USING (location_id);
+
+13. MariaDB [hr]> SELECT dept.department_name , emp.first_name ,emp.last_name FROM departments AS dept JOIN employees AS emp USING(department_id);
+
+14.	MariaDB [hr]> SELECT hist.*, emp.salary FROM job_history AS hist JOIN employees AS emp ON emp.department_id=hist.department_id AND emp.salary>=12000;
+
+15.	MariaDB [hr]> SELECT emp.first_name ,emp.last_name, emp.salary FROM employees AS emp join departments AS dept USING(department_id) JOIN locations loc USING(location_id) WHERE loc.city='london';
+
+16.	MariaDB [hr]> SELECT job.job_title , emp.first_name,emp.last_name, emp.salary-job.min_salary difference_of_salary FROM employees AS emp JOIN jobs as job USING(job_id) ;
+
+17:	MariaDB [hr]> SELECT job.job_title ,Avg(emp.salary) AS average_salaries FROM employees AS emp JOIN jobs AS job USING(job_id) GROUP BY job_id;
+
+18.	MariaDB [hr]> SELECT  jobh.employee_id, job.job_title ,DATEDIFF(End_Date,Start_Date) Days FROM jobs AS job join job_history AS jobh USING(job_id) WHERE jobh.department_id=90;	
+	

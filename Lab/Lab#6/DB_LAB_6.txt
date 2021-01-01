@@ -1,0 +1,36 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    06            ===============================================================================
+
+1. MariaDB [hr]> SELECT * FROM employees AS emp1 WHERE job_id!= SOME(SELECT job_id FROM job_history WHERE employee_id = emp1.employee_id );	
+
+2. MariaDB [hr]> SELECT CONCAT(first_name," ",last_name),salary FROM employees emp1 WHERE salary>(SELECT salary FROM employees WHERE last_name="bull");
+
+3.MariaDB [hr]> SELECT CONCAT(first_name," ",last_name) FROM employees WHERE job_id LIKE "IT";
+
+4.MariaDB [hr]> SELECT CONCAT(first_name," ",last_name) FROM employees AS emp1 JOIN departments AS dep USING(department_id) JOIN locations AS loc USING(location_id) WHERE emp1.manager_id!=0 AND loc.country_id="US";
+
+5.MariaDB [hr]> SELECT * FROM employees AS emp1 WHERE employee_id= SOME(SELECT manager_id FROM employees);
+
+6.MariaDB [hr]> SELECT CONCAT(first_name," ",last_name) AS name,salary FROM employees AS emp1 WHERE salary>(SELECT AVG(salary) FROM employees);
+
+7.MariaDB [hr]> SELECT employee_id,CONCAT(first_name," ",last_name) AS name,salary,job_id FROM employees AS emp1 WHERE emp1.salary=ALL(SELECT min_salary FROM jobs WHERE emp1.job_id=job_id);
+
+8.MariaDB [hr]> SELECT employee_id,CONCAT(first_name," ",last_name) AS name,salary FROM employees AS emp1 join departments AS dep USING(department_id) WHERE emp1.salary>(SELECT AVG(salary) FROM employees) AND department_name LIKE "it%";
+
+9.MariaDB [hr]> SELECT employee_id,CONCAT(first_name," ",last_name) AS name,salary FROM employees AS emp1 WHERE emp1.salary>(SELECT salary FROM employees WHERE CONCAT(first_name," ",last_name) like "%bell%");
+
+10.MariaDB [hr]> SELECT CONCAT(first_name," ",last_name) AS name , salary FROM employees AS emp1 WHERE salary=(SELECT MIN(salary) FROM employees WHERE emp1.department_id=department_id);
+
+11.MariaDB [hr]> SELECT CONCAT(first_name," ",last_name) AS name , salary FROM employees AS emp1 WHERE salary>(SELECT AVG(salary) FROM employees);
+
+12.MariaDB [hr]> SELECT CONCAT(first_name," ",last_name) AS name , salary FROM employees AS emp1 WHERE salary> ALL(SELECT salary FROM employees WHERE emp1.job_id="sh_clerk") order by salary;
+
+13. MariaDB [hr]> SELECT * FROM employees AS emp1 WHERE employee_id != ALL(SELECT manager_id FROM employees);
+
+14.MariaDB [hr]> SELECT employee_id , first_name , last_name , salary,dep.department_name FROM employees JOIN departments AS dep USING(department_id);
+
+15.MariaDB [hr]> SELECT employee_id,first_name,last_name , salary FROM employees AS emp1 WHERE salary>(SELECT AVG(salary) FROM employees WHERE emp1.department_id=department_id GROUP BY department_id);

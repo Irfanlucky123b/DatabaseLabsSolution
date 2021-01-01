@@ -1,0 +1,30 @@
+
+======================================================	Name       :    M.Mubashir    ==============================================================================
+							CMS-ID     :    021-19-0007
+======================================================	Department :    BSCS4         ==============================================================================
+							Section    :    B
+======================================================	Lab        :    04            ===============================================================================
+
+1.MariaDB [hr]> SELECT department_id , COUNT(*) FROM employees GROUP BY department_id ;
+
+2.MariaDB [hr]> SELECT department_id , COUNT(*) FROM employees GROUP BY department_id HAVING COUNT(*)>= 5;
+
+3.MariaDB [hr]> SELECT * FROM employees GROUP BY first_name ;
+
+4.MariaDB [hr]> SELECT first_name FROM employees WHERE first_name REGEXP "^....$" ;
+
+5.MariaDB [hr]> SELECT first_name FROM employees WHERE first_name REGEXP "LA" ;
+
+6.MariaDB [hr]> SELECT first_name FROM employees WHERE first_name REGEXP "^A[A-Za-z]*N$" ;
+
+7.MariaDB [hr]> SELECT first_name FROM employees WHERE first_name REGEXP "N$" ;
+
+8.MariaDB [hr]> SELECT first_name,last_name FROM employees WHERE first_name REGEXP "^a" ;
+
+9.MariaDB [hr]> SELECT job_id , COUNT(*) FROM employees GROUP BY job_id ;
+
+10.MariaDB [hr]> SELECT manager_id, MIN(salary)from employees WHERE manager_id IS NOT NULL GROUP BY manager_id HAVING min(salary)!=2000 ORDER BY MIN(salary) DESC;
+
+11.MariaDB [hr]> SELECT COUNT(*) FROM employees WHERE commission_pct=0 ;
+
+12.MariaDB [hr]> SELECT first_name FROM employees WHERE BINARY first_name REGEXP"t";
